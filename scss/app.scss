@@ -1,0 +1,161 @@
+@charset 'utf-8';
+
+@import 'settings';
+@import 'foundation';
+@import 'motion-ui';
+@import '../fonts/climacons-font.css';
+
+@include foundation-global-styles;
+@include foundation-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+@include foundation-accordion;
+@include foundation-accordion-menu;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+@include foundation-close-button;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-flex-video;
+@include foundation-label;
+@include foundation-media-object;
+@include foundation-menu;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+@include foundation-slider;
+@include foundation-sticky;
+@include foundation-reveal;
+@include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-thumbnail;
+@include foundation-title-bar;
+@include foundation-tooltip;
+@include foundation-top-bar;
+
+@include motion-ui-transitions;
+@include motion-ui-animations;
+
+
+$black: #4A4A4A;
+$forecast-background: #55C4F1;
+
+body {
+  background-color: #F9F9F9;
+  @media (min-width: 600px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.weather-forecast {
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  
+  @media (min-width: 600px) {
+    width: 800px;
+    max-height: 600px;
+    flex-direction: row;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+  }
+}
+
+.forecast {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: $forecast-background;
+  background: linear-gradient(to bottom right, lighten($forecast-background, 10%), darken($forecast-background, 5%));
+  color: #FFF;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  @media (min-width: 600px) {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .date {
+    margin-bottom: 0;
+  }
+  
+  .climacon {
+    font-size: 12rem;
+    line-height: 0;
+    text-align: center;
+    display: block;
+  }
+  
+  .temperature {
+    font-size: 5rem;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  .forecast-description {
+    margin-bottom: 0;
+  }
+}
+
+.stats {
+  flex-grow: 1;
+  padding: 20px;
+  overflow: auto;
+
+  table {
+    border: none;
+    thead, tbody, tfoot {
+      border: none;
+    }
+    thead {
+      border-bottom: 1px solid $black;
+      color: $forecast-background;
+    }
+    th {
+      background-color: #FFF;
+    }
+    tbody {
+      tr {
+        background-color: #FFF;
+      }
+      .climacon {
+        font-size: 1.5rem;
+        line-height: 0;
+        text-align: left;
+      }
+    }
+  }
+}
+
+td {
+  
+  &.icon {
+    text-align: center;2
+  }
+  .climacon {
+    vertical-align: middle;
+  }
+}
+
+.five-day-heading {
+  color: $forecast-background;
+  font-weight: bold;
+  border-bottom: 1px solid $black;
+  padding: 0.5rem 0.625rem 0.625rem
+}
+.five-day {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
