@@ -64,6 +64,7 @@ body {
   
   @media (min-width: 600px) {
     width: 800px;
+    min-height: 500px;
     max-height: 600px;
     flex-direction: row;
     border-radius: 10px;
@@ -141,7 +142,7 @@ body {
 td {
   
   &.icon {
-    text-align: center;2
+    text-align: center;
   }
   .climacon {
     vertical-align: middle;
@@ -158,4 +159,9 @@ td {
   display: flex;
   justify-content: space-between;
   text-align: center;
+  
+  .climacon {
+    font-size: 2rem;
+  }
+  
 }
