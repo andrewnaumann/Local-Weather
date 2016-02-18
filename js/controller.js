@@ -27,6 +27,10 @@ function getWeatherDataFromLatLon(lat, lon) {
  
     // Tell jQuery we're expecting JSONP
     dataType: "jsonp",
+    
+    data: {
+      units: 'si'
+    },
  
     // Work with the response
     success: function( response ) {
@@ -43,7 +47,7 @@ function updateWeatherUI() {
   var date = dateFormat(now.time * 1000, "dddd, mmmm dS, yyyy");
   var location = locationData.city + ", " + locationData.countryCode;
   var icon = conditionCodes[now.icon];
-  var currentTemp = now.temperature;
+  var currentTemp = Math.round(now.temperature) + "°";
   var summary = now.summary;
   
   updateWeatherUILabels(date, location, icon, currentTemp, summary);
@@ -87,12 +91,12 @@ function updateWeatherUILabels(date, location, icon, temp, summary ) {
 }
 
 function updateTodayForecastUILabels(time, temp, icon, summary) {
-  $('.forecast-today tbody').append("<tr><td>" + time + "</td><td>" + temp + "</td><td><span class='climacon" + icon + "'></span></td><td>" + summary + "</td></tr>");
+  $('.forecast-today tbody').append("<tr><td>" + time + "</td><td>" + temp + "</td><td class='climacon-cell'><span class='climacon " + icon + "'></span></td><td>" + summary + "</td></tr>");
 }
 
 function updateFiveDayForecastUILabels(day, conditionIcon, minTemp, maxTemp) {
   var $dayForecast = $('.five-day');
-  $dayForecast.append('<div class="day"><p>' + day + '</p><p class="climacon ' + conditionIcon + '"></p><p>' + minTemp + ' / ' + maxTemp + ' </p></div>');
+  $dayForecast.append('<div class="day"><p>' + day + '</p><p class="climacon ' + conditionIcon + '"></p><p>' + minTemp + '° / ' + maxTemp + '° </p></div>');
 }
 
 var conditionCodes = {

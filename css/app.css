@@ -3887,8 +3887,9 @@ table.hover tr:nth-of-type(even):hover {
 
 body {
   background-color: #F9F9F9; }
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     body {
+      margin: 0 20px;
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
@@ -3907,7 +3908,7 @@ body {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column; }
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     .weather-forecast {
       width: 800px;
       min-height: 500px;
@@ -3935,7 +3936,7 @@ body {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between; }
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     .forecast {
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px; } }
@@ -3972,8 +3973,9 @@ body {
       background-color: #FFF; }
     .stats table tbody .climacon {
       font-size: 1.5rem;
-      line-height: 0;
-      text-align: left; }
+      line-height: 0; }
+    .stats table tbody .climacon-cell {
+      text-align: center; }
 
 td.icon {
   text-align: center; }

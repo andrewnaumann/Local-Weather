@@ -50,7 +50,8 @@ $forecast-background: #55C4F1;
 
 body {
   background-color: #F9F9F9;
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
+    margin: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,7 +63,7 @@ body {
   display: flex;
   flex-direction: column;
   
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     width: 800px;
     min-height: 500px;
     max-height: 600px;
@@ -83,7 +84,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   
-  @media (min-width: 600px) {
+  @media (min-width: 700px) {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
@@ -133,7 +134,9 @@ body {
       .climacon {
         font-size: 1.5rem;
         line-height: 0;
-        text-align: left;
+      }
+      .climacon-cell {
+        text-align: center;
       }
     }
   }
