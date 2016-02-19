@@ -181,6 +181,7 @@ var conditionCodes = {
 };
 
 var gradients = {
+ '00': ['sky-gradient-00', '#20202c'],
  0: ['sky-gradient-00', '#20202c'],
  1: ['sky-gradient-01', '#20202c'],
  2: ['sky-gradient-02', '#20202c'],
