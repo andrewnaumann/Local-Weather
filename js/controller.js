@@ -62,7 +62,7 @@ function updateWeatherUI() {
   var nowTime = currentTime.getTime();
   var nowHour = dateFormat(nowTime, "HH");
   console.log("Current hour is nowHour: " + nowHour);
-  var gradient = gradients[0][0];
+  var gradient = gradients[nowHour][0];
   var date = dateFormat(nowTime, "dddd, mmmm dS, yyyy");
   var location = locationData.city + ", " + locationData.countryCode;
   var icon = conditionCodes[now.icon];
