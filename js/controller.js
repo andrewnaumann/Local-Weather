@@ -1,6 +1,7 @@
 $(document).ready(function() {
   createOverlay();
   getLocalWeather();
+  $('.temp-format-control').on('click', toggleTempFormat);
 });
 
   var API_KEY = "5dae11cfc0f09c4d4389e45ff5375087";
@@ -9,6 +10,7 @@ $(document).ready(function() {
   var currentTime = new Date();
   var weatherData = {};
   var locationData;
+  var tempFormat;
 
 
 function getLocalWeather() {
@@ -30,18 +32,30 @@ function getWeatherDataFromLatLon(lat, lon) {
     dataType: "jsonp",
     
     data: {
-      units: 'si'
+      units: 'auto'
     },
  
     // Work with the response
     success: function( response ) {
       weatherData = response;
-      updateWeatherUI();
-      updateTodayForecastUI();
-      updateFiveDayForecastUI();
+      updateFlags();
+      refreshUI();
       fadeOverlay();
     }
 });
+}
+
+function refreshUI() {
+  $('.forecast-today tbody').children().remove();
+  $('.five-day').children().remove();
+  updateWeatherUI();
+  updateTodayForecastUI();
+  updateFiveDayForecastUI();
+}
+
+function updateFlags() {
+  setTempFormat(weatherData.flags.units);
+  console.log(tempFormat);
 }
 
 function updateWeatherUI() {
@@ -51,7 +65,7 @@ function updateWeatherUI() {
   var date = dateFormat(now.time * 1000, "dddd, mmmm dS, yyyy");
   var location = locationData.city + ", " + locationData.countryCode;
   var icon = conditionCodes[now.icon];
-  var currentTemp = Math.round(now.temperature) + "°";
+  var currentTemp = convertTemp(now.temperature) + "°";
   var summary = now.summary;
   $('.accented').css({color: gradients[nowHour][1]});
   updateWeatherUILabels(gradient, date, location, icon, currentTemp, summary);
@@ -63,7 +77,7 @@ function updateTodayForecastUI() {
   var maxItems = 10;
   for (var i = 0; i < data.length; i++) {
     var forecastTime = data[i].time * 1000;
-    var forecastTemperature = Math.round(data[i].temperature) + "°";
+    var forecastTemperature = convertTemp(data[i].temperature) + "°";
     var forecastSummary = data[i].summary;
     var todaysDay = dateFormat(timeNow, "dd");
     var forecastDay = dateFormat(forecastTime, "dd");
@@ -80,8 +94,8 @@ function updateFiveDayForecastUI() {
   for(var i = 0; i < 5; i++) {
     var forecastDay = dateFormat(data[i].time * 1000, "ddd");
     var forecastConditionIcon = conditionCodes[data[i].icon];
-    var minTemp = Math.round(data[i].temperatureMin);
-    var maxTemp = Math.round(data[i].temperatureMax);
+    var minTemp = convertTemp(data[i].temperatureMin);
+    var maxTemp = convertTemp(data[i].temperatureMax);
     updateFiveDayForecastUILabels(forecastDay, forecastConditionIcon, minTemp, maxTemp);
   }
 }
@@ -105,15 +119,48 @@ function updateFiveDayForecastUILabels(day, conditionIcon, minTemp, maxTemp) {
 }
 
 function createOverlay() {
-  $('.overlay').addClass(gradients[12][0]);
+  $('.overlay').addClass(gradients[11][0]);
 }
 
 function fadeOverlay() {
   $('.overlay').animate({
     opacity: 0
-  }, 1000, function() {
+  }, 800, function() {
     $(this).css({display:'none'});
   });
+}
+
+function convertTemp(temp) {
+  if (weatherData.flags.units === 'us' && tempFormat === 'f') {
+    return Math.round(temp);
+  } else if (weatherData.flags.units === 'us' && tempFormat === 'c') {
+    return Math.round((temp -  32) * 5 / 9);
+  } else if (tempFormat === 'c') {
+    return Math.round(temp);
+  } else if (tempFormat === 'f') {
+    return Math.round(temp * 9/5 + 32);
+  }
+}
+
+function setTempFormat(format) {
+  if (format === 'us') {
+    tempFormat = 'f';
+  } else {
+    tempFormat = 'c';
+  }
+}
+
+function toggleTempFormat() {
+  if (tempFormat === 'c') {
+    $('.temp-format-control .celcius').removeClass('active');
+    $('.temp-format-control .fahrenheit').addClass('active');
+    tempFormat = 'f';
+  } else {
+    $('.temp-format-control .celcius').addClass('active');
+    $('.temp-format-control .fahrenheit').removeClass('active');
+    tempFormat = 'c';
+  }
+  refreshUI();
 }
 
 var conditionCodes = {
@@ -159,7 +206,6 @@ var gradients = {
  23: ['sky-gradient-23', '#150800'],
  24: ['sky-gradient-24', '#150800']
 };
-
 
 
 
