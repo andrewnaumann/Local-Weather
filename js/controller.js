@@ -55,14 +55,15 @@ function refreshUI() {
 
 function updateFlags() {
   setTempFormat(weatherData.flags.units);
-  console.log(tempFormat);
 }
 
 function updateWeatherUI() {
   var now = weatherData.currently;
-  var nowHour = dateFormat(now.time * 1000, "HH");
-  var gradient = gradients[nowHour][0];
-  var date = dateFormat(now.time * 1000, "dddd, mmmm dS, yyyy");
+  var nowTime = currentTime.getTime();
+  var nowHour = dateFormat(nowTime, "HH");
+  console.log("Current hour is nowHour: " + nowHour);
+  var gradient = gradients[0][0];
+  var date = dateFormat(nowTime, "dddd, mmmm dS, yyyy");
   var location = locationData.city + ", " + locationData.countryCode;
   var icon = conditionCodes[now.icon];
   var currentTemp = convertTemp(now.temperature) + "°";
