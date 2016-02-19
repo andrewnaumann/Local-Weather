@@ -10,6 +10,9 @@
   <body>
     
     <div class="weather-forecast">
+      <div class="overlay">
+        <p class="status-message">Looking out the window...</p> 
+      </div>
       <div class="forecast current-weather">
         <div class="meta">
         <p class="date"></p>
@@ -22,8 +25,9 @@
         </div>
       </div>
       <div class="stats">
+        <div class="hover-button temp-format-control"><span class="climacon celcius accented active"></span><span class="climacon fahrenheit accented"></span></div>
         <table class="forecast-today">
-          <thead>
+          <thead class="accented">
             <tr>
               <th colspan="4">Today</th>
             </tr>
@@ -33,7 +37,7 @@
           </tbody>
         </table>
         
-        <p class="five-day-heading">5 Day Forecast</p>
+        <p class="five-day-heading accented">5 Day Forecast</p>
             <div class="five-day">
  
             </div>
