@@ -42,7 +42,7 @@ function getWeatherDataFromLatLon(lat, lon) {
       refreshUI();
       fadeOverlay();
     }
-});
+  });
 }
 
 function refreshUI() {
@@ -192,7 +192,7 @@ var gradients = {
  7: ['sky-gradient-07', '#eab0d1'],
  8: ['sky-gradient-08', '#ebb2b1'],
  9: ['sky-gradient-09', '#b1b5ea'],
- 09: ['sky-gradient-09', '#b1b5ea'],
+ '09': ['sky-gradient-09', '#b1b5ea'],
  10: ['sky-gradient-10', '#94dfff'],
  11: ['sky-gradient-11', '#67d1fb'],
  12: ['sky-gradient-12', '#38a3d1'],
