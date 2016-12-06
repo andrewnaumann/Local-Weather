@@ -2,7 +2,7 @@ $(document).ready(function() {
   getLocalWeather();
 });
 
-  var API_KEY = 'a73d37a70600c365418eb2fb677e0a11';
+  var API_KEY = '9571edaa015e45ec33a1d35e4b5977a3';
   var apiURL = "http://api.openweathermap.org/data/2.5/";
   var locationData;
   var weatherData = [];
