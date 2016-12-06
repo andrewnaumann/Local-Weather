@@ -4,7 +4,7 @@ $(document).ready(function() {
   $('.temp-format-control').on('click', toggleTempFormat);
 });
 
-  var API_KEY = "5dae11cfc0f09c4d4389e45ff5375087";
+  var API_KEY = "9571edaa015e45ec33a1d35e4b5977a3";
   var apiURL = "https://api.forecast.io/forecast/";
   var callbackFunction = "callback=weatherDataCallback";
   var currentTime = new Date();
